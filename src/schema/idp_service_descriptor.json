@@ -1,0 +1,532 @@
+{
+  "service": {
+    "name": "idp",
+    "database": "idpDB",
+    "database_type": "sqlite",
+    "base_path": "/idp"
+  },
+  "entities": [
+    {
+      "name": "Claim",
+      "collection": "claim",
+      "fields": [
+        {
+          "name": "id",
+          "type": "str",
+          "required": true
+        },
+        {
+          "name": "claimNumber",
+          "type": "str",
+          "required": true
+        },
+        {
+          "name": "holderId",
+          "type": "PolicyHolder",
+          "required": true,
+          "relationship": {
+            "target": "PolicyHolder",
+            "collection": "PolicyHolder",
+            "cardinality": "many-to-one"
+          }
+        },
+        {
+          "name": "policyId",
+          "type": "InsurancePolicy",
+          "required": true,
+          "relationship": {
+            "target": "InsurancePolicy",
+            "collection": "InsurancePolicy",
+            "cardinality": "many-to-one"
+          }
+        },
+        {
+          "name": "claimDate",
+          "type": "date",
+          "required": true
+        },
+        {
+          "name": "claimStatus",
+          "type": "str",
+          "required": true
+        },
+        {
+          "name": "claimAmount",
+          "type": "float",
+          "required": true
+        },
+        {
+          "name": "description",
+          "type": "str",
+          "required": false
+        }
+      ],
+      "endpoints": {
+        "create": {
+          "method": "POST",
+          "path": "/idp/claim"
+        },
+        "list": {
+          "method": "GET",
+          "path": "/idp/claim"
+        },
+        "get": {
+          "method": "GET",
+          "path": "/idp/claim/{id}"
+        },
+        "update": {
+          "method": "PUT",
+          "path": "/idp/claim/{id}"
+        },
+        "delete": {
+          "method": "DELETE",
+          "path": "/idp/claim/{id}"
+        }
+      },
+      "relationships": [
+        {
+          "field": "holderId",
+          "target": "PolicyHolder",
+          "collection": "PolicyHolder",
+          "cardinality": "many-to-one"
+        },
+        {
+          "field": "policyId",
+          "target": "InsurancePolicy",
+          "collection": "InsurancePolicy",
+          "cardinality": "many-to-one"
+        }
+      ]
+    },
+    {
+      "name": "Document",
+      "collection": "document",
+      "fields": [
+        {
+          "name": "id",
+          "type": "str",
+          "required": true
+        },
+        {
+          "name": "fileName",
+          "type": "str",
+          "required": true
+        },
+        {
+          "name": "uploadTimestamp",
+          "type": "datetime",
+          "required": true
+        },
+        {
+          "name": "fileType",
+          "type": "str",
+          "required": true
+        },
+        {
+          "name": "extractedText",
+          "type": "str",
+          "required": false
+        },
+        {
+          "name": "status",
+          "type": "str",
+          "required": true
+        },
+        {
+          "name": "confidenceScore",
+          "type": "float",
+          "required": false
+        },
+        {
+          "name": "holderId",
+          "type": "PolicyHolder",
+          "required": true,
+          "relationship": {
+            "target": "PolicyHolder",
+            "collection": "PolicyHolder",
+            "cardinality": "many-to-one"
+          }
+        },
+        {
+          "name": "policyId",
+          "type": "InsurancePolicy",
+          "required": false,
+          "relationship": {
+            "target": "InsurancePolicy",
+            "collection": "InsurancePolicy",
+            "cardinality": "many-to-one"
+          }
+        }
+      ],
+      "endpoints": {
+        "create": {
+          "method": "POST",
+          "path": "/idp/document"
+        },
+        "list": {
+          "method": "GET",
+          "path": "/idp/document"
+        },
+        "get": {
+          "method": "GET",
+          "path": "/idp/document/{id}"
+        },
+        "update": {
+          "method": "PUT",
+          "path": "/idp/document/{id}"
+        },
+        "delete": {
+          "method": "DELETE",
+          "path": "/idp/document/{id}"
+        }
+      },
+      "relationships": [
+        {
+          "field": "holderId",
+          "target": "PolicyHolder",
+          "collection": "PolicyHolder",
+          "cardinality": "many-to-one"
+        },
+        {
+          "field": "policyId",
+          "target": "InsurancePolicy",
+          "collection": "InsurancePolicy",
+          "cardinality": "many-to-one"
+        }
+      ]
+    },
+    {
+      "name": "DocumentClassification",
+      "collection": "documentclassification",
+      "fields": [
+        {
+          "name": "id",
+          "type": "str",
+          "required": true
+        },
+        {
+          "name": "fileId",
+          "type": "Document",
+          "required": true,
+          "relationship": {
+            "target": "Document",
+            "collection": "Document",
+            "cardinality": "many-to-one"
+          }
+        },
+        {
+          "name": "documentType",
+          "type": "str",
+          "required": true
+        },
+        {
+          "name": "confidenceLevel",
+          "type": "float",
+          "required": true
+        },
+        {
+          "name": "recognitionRules",
+          "type": "str",
+          "required": false
+        }
+      ],
+      "endpoints": {
+        "create": {
+          "method": "POST",
+          "path": "/idp/documentclassification"
+        },
+        "list": {
+          "method": "GET",
+          "path": "/idp/documentclassification"
+        },
+        "get": {
+          "method": "GET",
+          "path": "/idp/documentclassification/{id}"
+        },
+        "update": {
+          "method": "PUT",
+          "path": "/idp/documentclassification/{id}"
+        },
+        "delete": {
+          "method": "DELETE",
+          "path": "/idp/documentclassification/{id}"
+        }
+      },
+      "relationships": [
+        {
+          "field": "fileId",
+          "target": "Document",
+          "collection": "Document",
+          "cardinality": "many-to-one"
+        }
+      ]
+    },
+    {
+      "name": "ExtractionResult",
+      "collection": "extractionresult",
+      "fields": [
+        {
+          "name": "id",
+          "type": "str",
+          "required": true
+        },
+        {
+          "name": "fileId",
+          "type": "Document",
+          "required": true,
+          "relationship": {
+            "target": "Document",
+            "collection": "Document",
+            "cardinality": "many-to-one"
+          }
+        },
+        {
+          "name": "classificationId",
+          "type": "DocumentClassification",
+          "required": true,
+          "relationship": {
+            "target": "DocumentClassification",
+            "collection": "DocumentClassification",
+            "cardinality": "many-to-one"
+          }
+        },
+        {
+          "name": "structuredData",
+          "type": "str",
+          "required": true
+        },
+        {
+          "name": "fieldConfidenceScores",
+          "type": "str",
+          "required": false
+        },
+        {
+          "name": "auditTrail",
+          "type": "str",
+          "required": false
+        }
+      ],
+      "endpoints": {
+        "create": {
+          "method": "POST",
+          "path": "/idp/extractionresult"
+        },
+        "list": {
+          "method": "GET",
+          "path": "/idp/extractionresult"
+        },
+        "get": {
+          "method": "GET",
+          "path": "/idp/extractionresult/{id}"
+        },
+        "update": {
+          "method": "PUT",
+          "path": "/idp/extractionresult/{id}"
+        },
+        "delete": {
+          "method": "DELETE",
+          "path": "/idp/extractionresult/{id}"
+        }
+      },
+      "relationships": [
+        {
+          "field": "fileId",
+          "target": "Document",
+          "collection": "Document",
+          "cardinality": "many-to-one"
+        },
+        {
+          "field": "classificationId",
+          "target": "DocumentClassification",
+          "collection": "DocumentClassification",
+          "cardinality": "many-to-one"
+        }
+      ]
+    },
+    {
+      "name": "InsurancePolicy",
+      "collection": "insurancepolicy",
+      "fields": [
+        {
+          "name": "id",
+          "type": "str",
+          "required": true
+        },
+        {
+          "name": "policyNumber",
+          "type": "str",
+          "required": true
+        },
+        {
+          "name": "holderId",
+          "type": "PolicyHolder",
+          "required": true,
+          "relationship": {
+            "target": "PolicyHolder",
+            "collection": "PolicyHolder",
+            "cardinality": "many-to-one"
+          }
+        },
+        {
+          "name": "coverageType",
+          "type": "str",
+          "required": true
+        },
+        {
+          "name": "startDate",
+          "type": "date",
+          "required": true
+        },
+        {
+          "name": "endDate",
+          "type": "date",
+          "required": true
+        },
+        {
+          "name": "policyStatus",
+          "type": "str",
+          "required": true
+        },
+        {
+          "name": "requiredDocuments",
+          "type": "str",
+          "required": false
+        }
+      ],
+      "endpoints": {
+        "create": {
+          "method": "POST",
+          "path": "/idp/insurancepolicy"
+        },
+        "list": {
+          "method": "GET",
+          "path": "/idp/insurancepolicy"
+        },
+        "get": {
+          "method": "GET",
+          "path": "/idp/insurancepolicy/{id}"
+        },
+        "update": {
+          "method": "PUT",
+          "path": "/idp/insurancepolicy/{id}"
+        },
+        "delete": {
+          "method": "DELETE",
+          "path": "/idp/insurancepolicy/{id}"
+        }
+      },
+      "relationships": [
+        {
+          "field": "holderId",
+          "target": "PolicyHolder",
+          "collection": "PolicyHolder",
+          "cardinality": "many-to-one"
+        }
+      ]
+    },
+    {
+      "name": "PolicyHolder",
+      "collection": "policyholder",
+      "fields": [
+        {
+          "name": "id",
+          "type": "str",
+          "required": true
+        },
+        {
+          "name": "firstName",
+          "type": "str",
+          "required": true
+        },
+        {
+          "name": "lastName",
+          "type": "str",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "str",
+          "required": true
+        },
+        {
+          "name": "phoneNumber",
+          "type": "str",
+          "required": true
+        },
+        {
+          "name": "privacyPreferences",
+          "type": "str",
+          "required": false
+        }
+      ],
+      "endpoints": {
+        "create": {
+          "method": "POST",
+          "path": "/idp/policyholder"
+        },
+        "list": {
+          "method": "GET",
+          "path": "/idp/policyholder"
+        },
+        "get": {
+          "method": "GET",
+          "path": "/idp/policyholder/{id}"
+        },
+        "update": {
+          "method": "PUT",
+          "path": "/idp/policyholder/{id}"
+        },
+        "delete": {
+          "method": "DELETE",
+          "path": "/idp/policyholder/{id}"
+        }
+      }
+    }
+  ],
+  "query_dsl": {
+    "parameter": "q",
+    "operators": [
+      "EQ(field,value)",
+      "NEQ(field,value)",
+      "GT(field,value)",
+      "GTE(field,value)",
+      "LT(field,value)",
+      "LTE(field,value)",
+      "LIKE(field,pattern)",
+      "IN(field,v1|v2|v3)",
+      "NOT-IN(field,v1|v2)"
+    ],
+    "projection": "keys=field1,field2 (use * for all fields)",
+    "pagination": "limit-offset: ?limit=N&offset=M",
+    "expansion": "expand=field1,field2 on list and get-by-id routes replaces those reference fields (each entity's relationships) with the referenced documents"
+  },
+  "representations": {
+    "parameter": "format",
+    "values": [
+      "json",
+      "xml",
+      "yaml",
+      "pdf"
+    ],
+    "default": "json",
+    "accept": {
+      "json": [
+        "application/json"
+      ],
+      "xml": [
+        "application/xml",
+        "text/xml"
+      ],
+      "yaml": [
+        "application/yaml",
+        "application/x-yaml",
+        "text/yaml"
+      ],
+      "pdf": [
+        "application/pdf"
+      ]
+    },
+    "precedence": "?format= overrides the Accept header; browsers (Accept with text/html) get json",
+    "applies_to": "every JSON response, errors included"
+  }
+}

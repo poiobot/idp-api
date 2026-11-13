@@ -1,0 +1,559 @@
+{
+  "project": "idp",
+  "dbname": "idpDB",
+  "dbtype": "sqlite",
+  "entities": [
+    {
+      "name": "Claim",
+      "collection": "Claim",
+      "snake_case": "claim",
+      "properties": [
+        {
+          "name": "id",
+          "type": "str",
+          "optional": false,
+          "occurrence": 1.0,
+          "alias": "claimId",
+          "is_reference": false,
+          "reference_collection": null,
+          "is_list_type": false,
+          "inner_type": null,
+          "key_type": null
+        },
+        {
+          "name": "claimNumber",
+          "type": "str",
+          "optional": false,
+          "occurrence": 1.0,
+          "alias": null,
+          "is_reference": false,
+          "reference_collection": null,
+          "is_list_type": false,
+          "inner_type": null,
+          "key_type": null
+        },
+        {
+          "name": "holderId",
+          "type": "PolicyHolder",
+          "optional": false,
+          "occurrence": 1.0,
+          "alias": null,
+          "is_reference": true,
+          "reference_collection": "PolicyHolder",
+          "is_list_type": false,
+          "inner_type": null,
+          "key_type": "str"
+        },
+        {
+          "name": "policyId",
+          "type": "InsurancePolicy",
+          "optional": false,
+          "occurrence": 1.0,
+          "alias": null,
+          "is_reference": true,
+          "reference_collection": "InsurancePolicy",
+          "is_list_type": false,
+          "inner_type": null,
+          "key_type": "str"
+        },
+        {
+          "name": "claimDate",
+          "type": "date",
+          "optional": false,
+          "occurrence": 1.0,
+          "alias": null,
+          "is_reference": false,
+          "reference_collection": null,
+          "is_list_type": false,
+          "inner_type": null,
+          "key_type": null
+        },
+        {
+          "name": "claimStatus",
+          "type": "str",
+          "optional": false,
+          "occurrence": 1.0,
+          "alias": null,
+          "is_reference": false,
+          "reference_collection": null,
+          "is_list_type": false,
+          "inner_type": null,
+          "key_type": null
+        },
+        {
+          "name": "claimAmount",
+          "type": "float",
+          "optional": false,
+          "occurrence": 1.0,
+          "alias": null,
+          "is_reference": false,
+          "reference_collection": null,
+          "is_list_type": false,
+          "inner_type": null,
+          "key_type": null
+        },
+        {
+          "name": "description",
+          "type": "str",
+          "optional": true,
+          "occurrence": 1.0,
+          "alias": null,
+          "is_reference": false,
+          "reference_collection": null,
+          "is_list_type": false,
+          "inner_type": null,
+          "key_type": null
+        }
+      ],
+      "nested_classes": []
+    },
+    {
+      "name": "Document",
+      "collection": "Document",
+      "snake_case": "document",
+      "properties": [
+        {
+          "name": "id",
+          "type": "str",
+          "optional": false,
+          "occurrence": 1.0,
+          "alias": "fileId",
+          "is_reference": false,
+          "reference_collection": null,
+          "is_list_type": false,
+          "inner_type": null,
+          "key_type": null
+        },
+        {
+          "name": "fileName",
+          "type": "str",
+          "optional": false,
+          "occurrence": 1.0,
+          "alias": null,
+          "is_reference": false,
+          "reference_collection": null,
+          "is_list_type": false,
+          "inner_type": null,
+          "key_type": null
+        },
+        {
+          "name": "uploadTimestamp",
+          "type": "datetime",
+          "optional": false,
+          "occurrence": 1.0,
+          "alias": null,
+          "is_reference": false,
+          "reference_collection": null,
+          "is_list_type": false,
+          "inner_type": null,
+          "key_type": null
+        },
+        {
+          "name": "fileType",
+          "type": "str",
+          "optional": false,
+          "occurrence": 1.0,
+          "alias": null,
+          "is_reference": false,
+          "reference_collection": null,
+          "is_list_type": false,
+          "inner_type": null,
+          "key_type": null
+        },
+        {
+          "name": "extractedText",
+          "type": "str",
+          "optional": true,
+          "occurrence": 1.0,
+          "alias": null,
+          "is_reference": false,
+          "reference_collection": null,
+          "is_list_type": false,
+          "inner_type": null,
+          "key_type": null
+        },
+        {
+          "name": "status",
+          "type": "str",
+          "optional": false,
+          "occurrence": 1.0,
+          "alias": null,
+          "is_reference": false,
+          "reference_collection": null,
+          "is_list_type": false,
+          "inner_type": null,
+          "key_type": null
+        },
+        {
+          "name": "confidenceScore",
+          "type": "float",
+          "optional": true,
+          "occurrence": 1.0,
+          "alias": null,
+          "is_reference": false,
+          "reference_collection": null,
+          "is_list_type": false,
+          "inner_type": null,
+          "key_type": null
+        },
+        {
+          "name": "holderId",
+          "type": "PolicyHolder",
+          "optional": false,
+          "occurrence": 1.0,
+          "alias": null,
+          "is_reference": true,
+          "reference_collection": "PolicyHolder",
+          "is_list_type": false,
+          "inner_type": null,
+          "key_type": "str"
+        },
+        {
+          "name": "policyId",
+          "type": "InsurancePolicy",
+          "optional": true,
+          "occurrence": 1.0,
+          "alias": null,
+          "is_reference": true,
+          "reference_collection": "InsurancePolicy",
+          "is_list_type": false,
+          "inner_type": null,
+          "key_type": "str"
+        }
+      ],
+      "nested_classes": []
+    },
+    {
+      "name": "DocumentClassification",
+      "collection": "DocumentClassification",
+      "snake_case": "document_classification",
+      "properties": [
+        {
+          "name": "id",
+          "type": "str",
+          "optional": false,
+          "occurrence": 1.0,
+          "alias": "classificationId",
+          "is_reference": false,
+          "reference_collection": null,
+          "is_list_type": false,
+          "inner_type": null,
+          "key_type": null
+        },
+        {
+          "name": "fileId",
+          "type": "Document",
+          "optional": false,
+          "occurrence": 1.0,
+          "alias": null,
+          "is_reference": true,
+          "reference_collection": "Document",
+          "is_list_type": false,
+          "inner_type": null,
+          "key_type": "str"
+        },
+        {
+          "name": "documentType",
+          "type": "str",
+          "optional": false,
+          "occurrence": 1.0,
+          "alias": null,
+          "is_reference": false,
+          "reference_collection": null,
+          "is_list_type": false,
+          "inner_type": null,
+          "key_type": null
+        },
+        {
+          "name": "confidenceLevel",
+          "type": "float",
+          "optional": false,
+          "occurrence": 1.0,
+          "alias": null,
+          "is_reference": false,
+          "reference_collection": null,
+          "is_list_type": false,
+          "inner_type": null,
+          "key_type": null
+        },
+        {
+          "name": "recognitionRules",
+          "type": "str",
+          "optional": true,
+          "occurrence": 1.0,
+          "alias": null,
+          "is_reference": false,
+          "reference_collection": null,
+          "is_list_type": false,
+          "inner_type": null,
+          "key_type": null
+        }
+      ],
+      "nested_classes": []
+    },
+    {
+      "name": "ExtractionResult",
+      "collection": "ExtractionResult",
+      "snake_case": "extraction_result",
+      "properties": [
+        {
+          "name": "id",
+          "type": "str",
+          "optional": false,
+          "occurrence": 1.0,
+          "alias": "resultId",
+          "is_reference": false,
+          "reference_collection": null,
+          "is_list_type": false,
+          "inner_type": null,
+          "key_type": null
+        },
+        {
+          "name": "fileId",
+          "type": "Document",
+          "optional": false,
+          "occurrence": 1.0,
+          "alias": null,
+          "is_reference": true,
+          "reference_collection": "Document",
+          "is_list_type": false,
+          "inner_type": null,
+          "key_type": "str"
+        },
+        {
+          "name": "classificationId",
+          "type": "DocumentClassification",
+          "optional": false,
+          "occurrence": 1.0,
+          "alias": null,
+          "is_reference": true,
+          "reference_collection": "DocumentClassification",
+          "is_list_type": false,
+          "inner_type": null,
+          "key_type": "str"
+        },
+        {
+          "name": "structuredData",
+          "type": "str",
+          "optional": false,
+          "occurrence": 1.0,
+          "alias": null,
+          "is_reference": false,
+          "reference_collection": null,
+          "is_list_type": false,
+          "inner_type": null,
+          "key_type": null
+        },
+        {
+          "name": "fieldConfidenceScores",
+          "type": "str",
+          "optional": true,
+          "occurrence": 1.0,
+          "alias": null,
+          "is_reference": false,
+          "reference_collection": null,
+          "is_list_type": false,
+          "inner_type": null,
+          "key_type": null
+        },
+        {
+          "name": "auditTrail",
+          "type": "str",
+          "optional": true,
+          "occurrence": 1.0,
+          "alias": null,
+          "is_reference": false,
+          "reference_collection": null,
+          "is_list_type": false,
+          "inner_type": null,
+          "key_type": null
+        }
+      ],
+      "nested_classes": []
+    },
+    {
+      "name": "InsurancePolicy",
+      "collection": "InsurancePolicy",
+      "snake_case": "insurance_policy",
+      "properties": [
+        {
+          "name": "id",
+          "type": "str",
+          "optional": false,
+          "occurrence": 1.0,
+          "alias": "policyId",
+          "is_reference": false,
+          "reference_collection": null,
+          "is_list_type": false,
+          "inner_type": null,
+          "key_type": null
+        },
+        {
+          "name": "policyNumber",
+          "type": "str",
+          "optional": false,
+          "occurrence": 1.0,
+          "alias": null,
+          "is_reference": false,
+          "reference_collection": null,
+          "is_list_type": false,
+          "inner_type": null,
+          "key_type": null
+        },
+        {
+          "name": "holderId",
+          "type": "PolicyHolder",
+          "optional": false,
+          "occurrence": 1.0,
+          "alias": null,
+          "is_reference": true,
+          "reference_collection": "PolicyHolder",
+          "is_list_type": false,
+          "inner_type": null,
+          "key_type": "str"
+        },
+        {
+          "name": "coverageType",
+          "type": "str",
+          "optional": false,
+          "occurrence": 1.0,
+          "alias": null,
+          "is_reference": false,
+          "reference_collection": null,
+          "is_list_type": false,
+          "inner_type": null,
+          "key_type": null
+        },
+        {
+          "name": "startDate",
+          "type": "date",
+          "optional": false,
+          "occurrence": 1.0,
+          "alias": null,
+          "is_reference": false,
+          "reference_collection": null,
+          "is_list_type": false,
+          "inner_type": null,
+          "key_type": null
+        },
+        {
+          "name": "endDate",
+          "type": "date",
+          "optional": false,
+          "occurrence": 1.0,
+          "alias": null,
+          "is_reference": false,
+          "reference_collection": null,
+          "is_list_type": false,
+          "inner_type": null,
+          "key_type": null
+        },
+        {
+          "name": "policyStatus",
+          "type": "str",
+          "optional": false,
+          "occurrence": 1.0,
+          "alias": null,
+          "is_reference": false,
+          "reference_collection": null,
+          "is_list_type": false,
+          "inner_type": null,
+          "key_type": null
+        },
+        {
+          "name": "requiredDocuments",
+          "type": "str",
+          "optional": true,
+          "occurrence": 1.0,
+          "alias": null,
+          "is_reference": false,
+          "reference_collection": null,
+          "is_list_type": false,
+          "inner_type": null,
+          "key_type": null
+        }
+      ],
+      "nested_classes": []
+    },
+    {
+      "name": "PolicyHolder",
+      "collection": "PolicyHolder",
+      "snake_case": "policy_holder",
+      "properties": [
+        {
+          "name": "id",
+          "type": "str",
+          "optional": false,
+          "occurrence": 1.0,
+          "alias": "holderId",
+          "is_reference": false,
+          "reference_collection": null,
+          "is_list_type": false,
+          "inner_type": null,
+          "key_type": null
+        },
+        {
+          "name": "firstName",
+          "type": "str",
+          "optional": false,
+          "occurrence": 1.0,
+          "alias": null,
+          "is_reference": false,
+          "reference_collection": null,
+          "is_list_type": false,
+          "inner_type": null,
+          "key_type": null
+        },
+        {
+          "name": "lastName",
+          "type": "str",
+          "optional": false,
+          "occurrence": 1.0,
+          "alias": null,
+          "is_reference": false,
+          "reference_collection": null,
+          "is_list_type": false,
+          "inner_type": null,
+          "key_type": null
+        },
+        {
+          "name": "email",
+          "type": "str",
+          "optional": false,
+          "occurrence": 1.0,
+          "alias": null,
+          "is_reference": false,
+          "reference_collection": null,
+          "is_list_type": false,
+          "inner_type": null,
+          "key_type": null
+        },
+        {
+          "name": "phoneNumber",
+          "type": "str",
+          "optional": false,
+          "occurrence": 1.0,
+          "alias": null,
+          "is_reference": false,
+          "reference_collection": null,
+          "is_list_type": false,
+          "inner_type": null,
+          "key_type": null
+        },
+        {
+          "name": "privacyPreferences",
+          "type": "str",
+          "optional": true,
+          "occurrence": 1.0,
+          "alias": null,
+          "is_reference": false,
+          "reference_collection": null,
+          "is_list_type": false,
+          "inner_type": null,
+          "key_type": null
+        }
+      ],
+      "nested_classes": []
+    }
+  ]
+}
