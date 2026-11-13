@@ -1,6 +1,8 @@
 from domain.model import PolicyHolder, InsurancePolicy, Claim, Document, DocumentClassification, ExtractionResult
 from data.generic_dao import GenericDAO
 
+
+
 if __name__ == "__main__":
 
     import json
